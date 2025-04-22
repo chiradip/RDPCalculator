@@ -6,25 +6,29 @@
 
 #include <iostream>
 
+#include "constants.h"
 #include "enums.h"
 #include "utility.h"
 
 
-void Calculator::calculation(const string &expr) {
+vector<string> Calculator::calculation(const string &expr) {
     vector<string> tokens;
     stringstream ss(expr);
-    char separator = ';';
+    constexpr char separator = ';';
     string token;
     while (getline(ss, token, separator)) {
         tokens.push_back(token);
     }
+    vector<string> results;
     for (const auto & stmt : tokens) {
         string s = stmt;
         s.erase(s.find_last_not_of(" \n\r\t")+1);
-        cout << stmt << " EVAL-> ";
+        //cout << stmt << " EVAL-> ";
         const auto eval = statement(s + ';');
-        cout << eval << endl;
+        //cout << eval << endl;
+        results.push_back(stmt + " EVAL=> " + std::to_string(eval));
     }
+    return results;
 }
 
 double Calculator::statement(const string& expr) {

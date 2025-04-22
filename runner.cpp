@@ -7,9 +7,10 @@
 #include "Calculator.h"
 
 int main(int argc, char *argv[]) {
-    Calculator calculator = Calculator();
-    const auto res = calculator.statement("1+2;");
-    cout << "d = " << res << '\n';
+    auto calculator = Calculator();
 
-    calculator.calculation("let a=7;let b=3; let c = a*b; a+b*8;");
+    vector<string> evals = calculator.calculation("let a=7;let b=3; let c = a*b; a+b*8;");
+    for (const auto &s : evals) {
+        cout << s << endl;
+    }
 }

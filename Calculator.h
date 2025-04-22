@@ -25,6 +25,6 @@ class Calculator {
 public:
     double statement(const string& expr);
 
-    void calculation(const string &expr);
+    vector<string> calculation(const string &expr);
 };
 #endif //CALCULATOR_H
